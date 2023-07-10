@@ -1,7 +1,7 @@
 <?php
 namespace Leave\Form\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Leave\Form\LeaveRequestForm;
 

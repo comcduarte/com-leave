@@ -1,7 +1,7 @@
 <?php
 namespace Leave\Controller\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Leave\Controller\LeaveController;
 use Leave\Form\LeaveRequestForm;
