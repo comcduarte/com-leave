@@ -10,6 +10,7 @@ use Laminas\Db\Sql\Ddl\Column\Decimal;
 use Laminas\Db\Sql\Ddl\Column\Integer;
 use Laminas\Db\Sql\Ddl\Column\Varchar;
 use Laminas\Db\Sql\Ddl\Constraint\PrimaryKey;
+use Laminas\Db\Sql\Ddl\Index\Index;
 
 class LeaveConfigController extends AbstractConfigController
 {
@@ -50,6 +51,7 @@ class LeaveConfigController extends AbstractConfigController
         $ddl->addColumn(new Decimal('BALANCE', 8, 2, TRUE));
         
         $ddl->addConstraint(new PrimaryKey('UUID'));
+        $ddl->addConstraint(new Index(['EMP_NUM','CODE'], 'IDX_LEAVE'));
         
         $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
                 
