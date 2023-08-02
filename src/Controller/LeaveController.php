@@ -57,12 +57,20 @@ class LeaveController extends AbstractBaseController
             $record_exists = $leave->read(['EMP_NUM' => $record['EMP_NUM'], 'CODE' => $record['CODE']]);
             $hydrator = new ArraySerializableHydrator();
             
+            $leave = $hydrator->hydrate($record->getArrayCopy(), $leave);
+            
+            switch ($leave->CODE) {
+                case "COMP":
+                case "CTEARNED":
+                case "FS3C":
+                case "LDD":
+                    $leave->STATUS = $leave::INACTIVE_STATUS;
+            }
+            
             try {
                 if ($record_exists) {
-                    $leave = $hydrator->hydrate($record->getArrayCopy(), $leave);
                     $leave->update();
                 } else {
-                    $leave->exchangeArray($record);
                     $leave->create();
                 }
             } catch (Exception $e) {
