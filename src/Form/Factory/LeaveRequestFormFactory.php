@@ -10,7 +10,6 @@ class LeaveRequestFormFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $form = new LeaveRequestForm();
-        $adapter = $container->get('leave-model-adapter');
         return $form;
     }
 }
